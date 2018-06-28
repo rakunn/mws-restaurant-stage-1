@@ -148,20 +148,40 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
  */
 createReviewHTML = (review) => {
   const li = document.createElement('li');
-  const name = document.createElement('p');
-  name.innerHTML = review.name;
-  li.appendChild(name);
+  const reviewHeader = document.createElement('h3');
+  reviewHeader.className = "review-header";
 
-  const date = document.createElement('p');
+  const name = document.createElement('span');
+  name.className = 'author';
+  name.innerHTML = review.name;
+  reviewHeader.appendChild(name);
+
+  const date = document.createElement('span');
+  date.className = 'date';
   date.innerHTML = review.date;
-  li.appendChild(date);
+  reviewHeader.appendChild(date);
+
+  li.appendChild(reviewHeader);
 
   const rating = document.createElement('p');
-  rating.innerHTML = `Rating: ${review.rating}`;
+  let stars = '';
+  let i = 1;
+
+  for (i; i <= review.rating; i+=1) {
+    stars += '★';
+  }
+
+  for (i; i <= 5; i+=1) { //5 is max rating
+    stars += '✩';
+  }
+
+  rating.innerHTML = `Rating: <span class="stars">${stars}</span>`;
+  rating.className = 'rating';
   li.appendChild(rating);
 
   const comments = document.createElement('p');
   comments.innerHTML = review.comments;
+  comments.className = 'comment';
   li.appendChild(comments);
 
   return li;
@@ -183,12 +203,12 @@ fillBreadcrumb = (restaurant=self.restaurant) => {
 getParameterByName = (name, url) => {
   if (!url)
     url = window.location.href;
-  name = name.replace(/[\[\]]/g, '\\$&');
-  const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`),
-    results = regex.exec(url);
-  if (!results)
-    return null;
-  if (!results[2])
-    return '';
+    name = name.replace(/[\[\]]/g, '\\$&');
+    const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`),
+      results = regex.exec(url);
+    if (!results)
+     return null;
+    if (!results[2])
+      return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
