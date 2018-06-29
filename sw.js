@@ -1,4 +1,4 @@
-const cacheNameStatic = 'mws-v1';
+const cacheNameStatic = 'mws-v2';
 const filesToCache = [
   './js/dbhelper.js',
   './js/main.js',
