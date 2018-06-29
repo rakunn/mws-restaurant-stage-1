@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   initMap(); // added
 
   if (!navigator.serviceWorker) return;
-  navigator.serviceWorker.register('../sw.js')
+  navigator.serviceWorker.register('./sw.js')
     .then(() => console.log('SW registered'))
     .catch(() => console.log('SW register unsuccessful!'));
 
