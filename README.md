@@ -6,8 +6,7 @@
 
 #### What do I do from here?
 
-Open live version at: https://rakunn.github.io/mws-restaurant-stage-1
-
+Open live version at: https://rakunn.github.io/mws-restaurant-stage-1/
 Or clone this repo and run in terminal following command:
 ```
 python -m http.server 8000
