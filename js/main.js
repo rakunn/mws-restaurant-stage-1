@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   initMap(); // added
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js', { scope: './' })
+    navigator.serviceWorker.register('./js/sw.js', { scope: './' })
       .then(function(registration) {
         console.log('Registration successful, scope is:', registration.scope);
       })
