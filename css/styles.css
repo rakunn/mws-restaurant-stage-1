@@ -43,13 +43,13 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 	display: block;
 }
 
-#maincontent {
+main {
   background-color: #f3f3f3;
   min-height: 100%;
 }
 
 @media screen and (min-width: 1200px) {
-  #maincontent {
+  main {
     display: grid;
     grid-template-columns: 45vw 55vw;
     grid-template-rows: 100%;
@@ -58,13 +58,13 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 }
 
 @media screen and (min-width: 800px) {
-  .inside #maincontent > * {
+  .inside main > * {
     max-width: 800px;
   }
 }
 
 @media screen and (min-width: 1200px) {
-  .inside #maincontent {
+  .inside main {
     display: grid;
     grid-template-columns: 450px 350px auto;
     grid-template-rows: 100%;
