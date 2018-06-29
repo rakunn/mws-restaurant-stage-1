@@ -20,8 +20,9 @@ const filesToCache = [
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open(cacheName)
-      .then(cache => cache.addAll(filesToCache))
+    caches.open(cacheNameStatic).then(function(cache) {
+      return cache.addAll(filesToCache);
+    })
   );
 });
 
