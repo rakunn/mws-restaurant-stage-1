@@ -1,4 +1,4 @@
-const cacheName = 'mws-v1';
+const cacheNameStatic = 'mws-v1';
 const filesToCache = [
   './js/dbhelper.js',
   './js/main.js',
@@ -25,20 +25,26 @@ self.addEventListener('install', function(event) {
   );
 });
 
-self.addEventListener('activate', event => {
+self.addEventListener('activate', function(event) {
   event.waitUntil(
     caches.keys()
-      .then(cachesList => cachesList
-        .filter(cache => cache !== cacheName)
-        .map(foundCache => caches.delete(foundCache))
-      )
-  )
+      .then(function(cacheNames) {
+        return Promise.all(
+          cacheNames.filter(function(cacheName) {
+            return cacheName !== cacheNameStatic
+          }).map(function(cacheName) {
+              return caches.delete(cacheName);
+          })
+        );
+    })
+  );
 });
 
-self.addEventListener('fetch', event => {
+self.addEventListener('fetch', function(event) {
   event.respondWith(
     caches.match(event.request)
-      .then(response => response || fetch(event.request))
-      .catch(error => console.log(error))
-  )
+      .then(function(response) {
+        return response || fetch(event.request);
+      })
+  );
 });
